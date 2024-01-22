@@ -4,13 +4,13 @@ import com.thehutgroup.accelerator.connectn.player.Board;
 public class MonteCarlo {
 
     private final Board board;
-    private final long givenTime;
+    private final long timeLimit;
 
     public static final double EXPLORATION = Math.sqrt(2);
 
-    public MonteCarlo(Board board, long givenTime) {
+    public MonteCarlo(Board board, long timeLimit) {
         this.board = board;
-        this.givenTime = givenTime;
+        this.timeLimit = timeLimit;
     }
 
     public void update(int move) {

@@ -7,7 +7,7 @@ public class Node {
     private Node parent;
     private Node[] children;
     private int visits;
-    private double player1Wins;
+    private double winCount;
     private final Board board;
 
     public Node(Node parent, Board board) {
@@ -19,7 +19,7 @@ public class Node {
 
     }
 
-    public double incrementPlayer1Wins(double result) {
+    public double incrementWinCount(double result) {
 
     }
 }

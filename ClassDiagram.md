@@ -6,12 +6,12 @@ class Node {
     -Node parent
     -Node[] children
     -int visits
-    -double player1Wins
+    -double winCount
     -final Board board
     
     +Node(Node parent, Board board)
     +int incrementVisits()
-    +double incrementPlayer1Wins(double result)
+    +double winCount(double result)
 
 }
 
@@ -19,9 +19,9 @@ class MonteCarlo {
     -Node root
     -final int width
     -{static} final double EXPLORATION = Math.sqrt(2)
-    -long givenTime
+    -long timeLimit
     
-    +ConnectBruh(Board board, long givenTime)
+    +ConnectBruh(Board board, long timeLimit)
     
     +void update(int move)
     +int getOptimalMove()
@@ -29,7 +29,7 @@ class MonteCarlo {
     -Node select(Node parent)
     -Node expand(Node selectedNode)
     -double simulate(Node expandedNode)
-    -void backpropagate(Node expandedNode, double SimulationResult)
+    -void backPropagate(Node expandedNode, double SimulationResult)
 }
 
 class BoardUtils {
