@@ -15,7 +15,7 @@ class Node {
 
 }
 
-class ConnectBruh {
+class MonteCarlo {
     -Node root
     -final int width
     -{static} final double EXPLORATION = Math.sqrt(2)
@@ -32,5 +32,8 @@ class ConnectBruh {
     -void backpropagate(Node expandedNode, double SimulationResult)
 }
 
+class BoardUtils {
+    +
+}
 @enduml
 ```
