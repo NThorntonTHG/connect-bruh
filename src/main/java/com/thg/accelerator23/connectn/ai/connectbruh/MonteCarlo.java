@@ -1,10 +1,6 @@
 package com.thg.accelerator23.connectn.ai.connectbruh;
-import com.thehutgroup.accelerator.connectn.player.Board;
-import com.thehutgroup.accelerator.connectn.player.Counter;
-import com.thehutgroup.accelerator.connectn.player.Position;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class MonteCarlo {
