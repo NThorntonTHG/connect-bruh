@@ -6,8 +6,6 @@ import com.thehutgroup.accelerator.connectn.player.Position;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.thehutgroup.accelerator.connectn.player.Counter.O;
-import static com.thehutgroup.accelerator.connectn.player.Counter.X;
 
 public class MonteCarlo {
 
@@ -31,8 +29,9 @@ public class MonteCarlo {
     }
 
     // returns the optimal move for the current player
+    // This is the integer that will be sent as the AI's move
     public int getOptimalMove() {
-        for (long stop = System.nanoTime()+timeLimit; stop>System.nanoTime();) {
+        for (long stop = System.currentTimeMillis()+timeLimit; stop>System.currentTimeMillis();) {
             Node selectedNode = select();
             if(selectedNode == null)
                 continue;
@@ -51,10 +50,12 @@ public class MonteCarlo {
         return maxIndex;
     }
 
+    // Select the root if there are no other nodes
     private Node select() {
         return select(root);
     }
 
+    // Selection stage: pick the "optimal" node using UCT
     private Node select(Node parent) {
         // if parent has at least child without statistics, select parent
         for(int i = 0; i < 10; i++) {
@@ -84,6 +85,7 @@ public class MonteCarlo {
         return select(parent.children[maxIndex]);
     }
 
+    // Expansion stage: Add a child node to the Node that was determined to be optimal during selection
     private Node expand(Node selectedNode) {
         // get unvisited child nodes
         ArrayList<Integer> unvisitedChildrenIndices = new ArrayList<Integer>(10);
@@ -99,7 +101,7 @@ public class MonteCarlo {
         return selectedNode.children[selectedIndex];
     }
 
-    // returns result of simulation
+    // Simulation stage: play a game from the expanded node, and return a value based on the outcome of that game
     private double simulate(Node expandedNode) {
         FinalBoard simulationBoard = expandedNode.board.copy();
         while(simulationBoard.currentGameState() == FinalBoard.ONGOING) {
@@ -116,6 +118,7 @@ public class MonteCarlo {
         }
     }
 
+    // 4. Backpropagation stage: update the chain of parent nodes based on the result of the simulation
     private void backpropagate(Node expandedNode, double simulationResult) {
         Node currentNode = expandedNode;
         while(currentNode != null) {
