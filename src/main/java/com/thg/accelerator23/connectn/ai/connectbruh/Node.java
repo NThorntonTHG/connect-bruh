@@ -4,11 +4,11 @@ import com.thehutgroup.accelerator.connectn.player.Board;
 
 
 public class Node {
-    private Node parent;
-    private Node[] children;
-    private int visits;
+    Node parent;
+    protected Node[] children;
+    int visits;
     private double winCount;
-    private final FinalBoard board;
+    protected final FinalBoard board;
 
     public Node(Node parent, FinalBoard board) {
         this.parent = parent;
@@ -24,5 +24,9 @@ public class Node {
 
     public double incrementWinCount(double result) {
         return winCount + result;
+    }
+
+    public double getWinCount() {
+        return winCount;
     }
 }
