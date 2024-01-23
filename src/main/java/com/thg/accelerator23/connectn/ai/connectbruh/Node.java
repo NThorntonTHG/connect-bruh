@@ -8,18 +8,21 @@ public class Node {
     private Node[] children;
     private int visits;
     private double winCount;
-    private final Board board;
+    private final FinalBoard board;
 
-    public Node(Node parent, Board board) {
+    public Node(Node parent, FinalBoard board) {
         this.parent = parent;
         this.board = board;
+        this.visits = 0;
+        this.winCount = 0;
+        children = new Node[10];
     }
 
     public int incrementVisits() {
-
+        return ++visits;
     }
 
     public double incrementWinCount(double result) {
-
+        return winCount + result;
     }
 }
