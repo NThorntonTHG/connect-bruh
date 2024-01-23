@@ -45,9 +45,9 @@ public class FinalBoard {
     }
 
     public FinalBoard(int width, int height) {
-        this.width = 10;
-        this.height = 8;
-        board = new int[height][width]; // default all 0
+        this.width = width;
+        this.height = height;
+        board = new int[width][height]; // default all 0
         nextTurn = PLAYER_1_TURN;
     }
 
