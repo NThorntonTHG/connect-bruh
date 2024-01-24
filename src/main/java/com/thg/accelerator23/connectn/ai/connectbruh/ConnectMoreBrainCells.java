@@ -6,6 +6,7 @@ import com.thehutgroup.accelerator.connectn.player.InvalidMoveException;
 import com.thehutgroup.accelerator.connectn.player.Position;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 import static com.thehutgroup.accelerator.connectn.player.Counter.O;
 import static com.thehutgroup.accelerator.connectn.player.Counter.X;
@@ -14,7 +15,6 @@ public class ConnectMoreBrainCells {
     Board board;
     Counter counter;
     Counter opponentCounter;
-    int moves = 0;
 
     public ConnectMoreBrainCells(Board board, Counter counter) {
         this.board = board;
@@ -39,7 +39,12 @@ public class ConnectMoreBrainCells {
     }
 
     private boolean earlyGame() {
-        return moves < 4;
+        for (int col = 0; col < 10; col++) {
+            if (!board.hasCounterAtPosition(new Position(col, 2))) {
+                return true;
+            };
+        }
+        return false;
     }
 
     private int prioritiseCentre() {
