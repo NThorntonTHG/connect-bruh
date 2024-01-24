@@ -12,10 +12,14 @@ import static com.thehutgroup.accelerator.connectn.player.Counter.X;
 
 public class ConnectMoreBrainCells {
     Board board;
+    Counter counter;
+    Counter opponentCounter;
     int moves = 0;
 
-    public ConnectMoreBrainCells(Board board) {
+    public ConnectMoreBrainCells(Board board, Counter counter) {
         this.board = board;
+        this.counter = counter;
+        this.opponentCounter = this.counter.getOther();
     }
 
     public int makeMove() {
@@ -45,8 +49,8 @@ public class ConnectMoreBrainCells {
     public int getWinningMove() {
         for (int col = 0; col < 10; col++) {
             try {
-                Board simulatedBoard = new Board(board, col, O);
-                if (didPlayerWin(simulatedBoard, O)) {
+                Board simulatedBoard = new Board(board, col, opponentCounter);
+                if (didPlayerWin(simulatedBoard, opponentCounter)) {
                     return col;
                 }
             } catch (InvalidMoveException ignored) {}
@@ -58,8 +62,8 @@ public class ConnectMoreBrainCells {
     public int getBlockingMove() {
         for (int col = 0; col < 10; col++) {
             try {
-                Board simulatedBoard = new Board(board, col, X);
-                if (didPlayerWin(simulatedBoard, X)) {
+                Board simulatedBoard = new Board(board, col, counter);
+                if (didPlayerWin(simulatedBoard, counter)) {
                     return col;
                 }
             } catch (InvalidMoveException e) {}

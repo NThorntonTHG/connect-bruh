@@ -17,7 +17,8 @@ public class ConnectBruh extends Player {
     //TODO: some crazy analysis
     //TODO: make sure said analysis uses less than 2G of heap and returns within 10 seconds on whichever machine is running it
     //convert board to FinalBoard
-    ConnectMoreBrainCells ai = new ConnectMoreBrainCells(board);
+    Counter counter = super.getCounter();
+    ConnectMoreBrainCells ai = new ConnectMoreBrainCells(board, counter);
     return ai.makeMove();
   }
 }
