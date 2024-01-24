@@ -16,7 +16,6 @@ public class MonteCarlo {
         this.timeLimit = timeLimit;
     }
 
-
     // sets root to new board state
     public void update(int move) {
         root = root.children[move] != null
