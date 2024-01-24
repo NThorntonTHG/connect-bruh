@@ -17,10 +17,14 @@ public class MonteCarlo {
     }
 
     // sets root to new board state
-    public void update(int move) {
-        root = root.children[move] != null
-                ? root.children[move]
-                : new Node(null, root.board.getNextState(move));
+    public void updateRoot(int move) {
+        if (root.children[move] != null) {
+            // If the child node for the given move exists, uodate the root to this child node.
+            root = root.children[move];
+        } else {
+            // If the child node does not exist, create this new next state Node
+            root = new Node(null, root.board.getNextState(move));
+        }
     }
 
     // returns the optimal move for the current player
