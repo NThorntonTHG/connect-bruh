@@ -17,8 +17,7 @@ public class ConnectBruh extends Player {
     //TODO: some crazy analysis
     //TODO: make sure said analysis uses less than 2G of heap and returns within 10 seconds on whichever machine is running it
     //convert board to FinalBoard
-    FinalBoard finalBoard = new FinalBoard(board);
-    MonteCarlo ai = new MonteCarlo(finalBoard, 60000);
-    return ai.getOptimalMove();
+    ConnectMoreBrainCells ai = new ConnectMoreBrainCells(board);
+    return ai.makeMove();
   }
 }
