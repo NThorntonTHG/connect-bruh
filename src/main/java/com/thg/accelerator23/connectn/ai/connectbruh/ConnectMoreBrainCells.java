@@ -19,7 +19,7 @@ public class ConnectMoreBrainCells {
     }
 
     public int makeMove() {
-        if (moves < 10) {
+        if (earlyGame()) {
             moves++;
             return prioritiseCentre();
         } else if (getWinningMove() > 0) {
