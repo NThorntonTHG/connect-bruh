@@ -10,9 +10,34 @@ import static com.thehutgroup.accelerator.connectn.player.Counter.X;
 
 public class ConnectMoreBrainCells {
     Board board;
+    int moves;
 
     public ConnectMoreBrainCells(Board board) {
         this.board = board;
+    }
+
+    public int makeMove() {
+        if (moves < 10) {
+            moves++;
+            return prioritiseCentre();
+        } else if (getWinningMove() > 0) {
+            moves++;
+            return getWinningMove();
+        } else if (getBlockingMove() > 0) {
+            moves++;
+            return getBlockingMove();
+        } else {
+            moves++;
+            return getRandomMove();
+        }
+    }
+
+    private boolean earlyGame() {
+        return moves < 5;
+    }
+
+    private int prioritiseCentre() {
+        return 5;
     }
 
     public int getWinningMove() {
@@ -22,7 +47,7 @@ public class ConnectMoreBrainCells {
                 if (didPlayerWin(simulatedBoard, O)) {
                     return col;
                 }
-            } catch (InvalidMoveException e) {}
+            } catch (InvalidMoveException ignored) {}
         }
 
         return -1;
