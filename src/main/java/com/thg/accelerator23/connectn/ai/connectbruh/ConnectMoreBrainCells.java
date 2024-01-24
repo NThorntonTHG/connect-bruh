@@ -12,7 +12,7 @@ import static com.thehutgroup.accelerator.connectn.player.Counter.X;
 
 public class ConnectMoreBrainCells {
     Board board;
-    int moves;
+    int moves = 0;
 
     public ConnectMoreBrainCells(Board board) {
         this.board = board;
@@ -35,7 +35,7 @@ public class ConnectMoreBrainCells {
     }
 
     private boolean earlyGame() {
-        return moves < 5;
+        return moves < 4;
     }
 
     private int prioritiseCentre() {
