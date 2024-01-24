@@ -5,6 +5,8 @@ import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.InvalidMoveException;
 import com.thehutgroup.accelerator.connectn.player.Position;
 
+import java.util.*;
+
 import static com.thehutgroup.accelerator.connectn.player.Counter.O;
 import static com.thehutgroup.accelerator.connectn.player.Counter.X;
 
@@ -38,6 +40,31 @@ public class ConnectMoreBrainCells {
             } catch (InvalidMoveException e) {}
         }
         return -1;
+    }
+
+    public int getRandomMove() {
+        int totalColumns = board.getConfig().getWidth();
+        Random random = new Random();
+
+
+        for (int attempts = 0; attempts < totalColumns; attempts++) {
+            int col = random.nextInt(totalColumns);
+            if (!isColumnFull(col)){
+                return col;
+            }
+        }
+        return -1;
+    }
+
+    public boolean isColumnFull(int columnIndex) {
+        int totalRows = board.getConfig().getHeight();
+        for (int rowIndex = 0; rowIndex < totalRows; rowIndex++) {
+            if (board.getCounterAtPosition(new Position(columnIndex, rowIndex)) == null) {
+                // If any position is empty, the column is not full
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean didPlayerWin(Board board, Counter playerDisk) {
