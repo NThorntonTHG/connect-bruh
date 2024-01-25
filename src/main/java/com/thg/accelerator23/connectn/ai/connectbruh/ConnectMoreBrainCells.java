@@ -24,27 +24,18 @@ public class ConnectMoreBrainCells {
 
     public int makeMove() {
         if (earlyGame()) {
-            moves++;
             return prioritiseCentre();
         } else if (getWinningMove() > 0) {
-            moves++;
             return getWinningMove();
         } else if (getBlockingMove() > 0) {
-            moves++;
             return getBlockingMove();
         } else {
-            moves++;
             return getRandomMove();
         }
     }
 
     private boolean earlyGame() {
-        for (int col = 0; col < 10; col++) {
-            if (!board.hasCounterAtPosition(new Position(col, 2))) {
-                return true;
-            };
-        }
-        return false;
+        return !board.hasCounterAtPosition(new Position(5, 2));
     }
 
     private int prioritiseCentre() {
