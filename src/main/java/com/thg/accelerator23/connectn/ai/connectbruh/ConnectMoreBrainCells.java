@@ -24,16 +24,12 @@ public class ConnectMoreBrainCells {
 
     public int makeMove() {
         if (earlyGame()) {
-            moves++;
             return prioritiseCentre();
         } else if (getWinningMove() > 0) {
-            moves++;
             return getWinningMove();
         } else if (getBlockingMove() > 0) {
-            moves++;
             return getBlockingMove();
         } else {
-            moves++;
             return getRandomMove();
         }
     }
