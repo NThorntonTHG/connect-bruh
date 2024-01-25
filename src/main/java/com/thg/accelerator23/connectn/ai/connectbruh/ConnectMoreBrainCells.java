@@ -4,6 +4,7 @@ import com.thehutgroup.accelerator.connectn.player.Board;
 import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.InvalidMoveException;
 import com.thehutgroup.accelerator.connectn.player.Position;
+import com.thg.accelerator23.connectn.ai.connectbruh.analysis.BoardAnalyser;
 
 import java.util.*;
 import java.util.stream.Stream;
@@ -15,6 +16,8 @@ public class ConnectMoreBrainCells {
     Board board;
     Counter counter;
     Counter opponentCounter;
+
+    BoardAnalyser boardAnalyser;
 
     public ConnectMoreBrainCells(Board board, Counter counter) {
         this.board = board;
