@@ -29,9 +29,15 @@ public class ConnectMoreBrainCells {
             return getWinningMove();
         } else if (getBlockingMove() > 0) {
             return getBlockingMove();
+        } else if (makeThree() > 0) {
+            return makeThree();
         } else {
             return getRandomMove();
         }
+    }
+
+    private int makeThree() {
+        return 0;
     }
 
     private boolean earlyGame() {
