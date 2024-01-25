@@ -29,18 +29,19 @@ public class ConnectMoreBrainCells {
             return getWinningMove();
         } else if (getBlockingMove() > 0) {
             return getBlockingMove();
+        } else if (makeThree() > 0) {
+            return makeThree();
         } else {
             return getRandomMove();
         }
     }
 
+    private int makeThree() {
+        return 0;
+    }
+
     private boolean earlyGame() {
-        for (int col = 0; col < 10; col++) {
-            if (!board.hasCounterAtPosition(new Position(col, 2))) {
-                return true;
-            };
-        }
-        return false;
+        return !board.hasCounterAtPosition(new Position(5, 2));
     }
 
     private int prioritiseCentre() {
