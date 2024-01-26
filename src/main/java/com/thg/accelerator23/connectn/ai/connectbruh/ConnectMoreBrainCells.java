@@ -167,15 +167,29 @@ public class ConnectMoreBrainCells {
 
     public int basicRandomMove() {
         int totalColumns = board.getConfig().getWidth();
-        Random random = new Random();
+        List<Integer> centerCols = Arrays.asList(3, 4, 5, 6);
+        List<Integer> edgeCols = new ArrayList<>();
 
+        for(int col = 0; col < totalColumns; col++) {
+            if (col < 3 || col > 6) {
+                edgeCols.add(col);
+            }
+        }
 
-        for (int attempts = 0; attempts < totalColumns; attempts++) {
-            int col = random.nextInt(totalColumns);
-            if (!isColumnFull(col)){
+        Collections.shuffle(centerCols);
+        for (int col : centerCols) {
+            if (!isColumnFull(col)) {
                 return col;
             }
         }
+
+        Collections.shuffle(edgeCols);
+        for (int col : edgeCols) {
+            if (!isColumnFull(col)) {
+                return col;
+            }
+        }
+
         return -1;
     }
 
