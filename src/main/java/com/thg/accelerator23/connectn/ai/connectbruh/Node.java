@@ -2,31 +2,28 @@ package com.thg.accelerator23.connectn.ai.connectbruh;
 
 import com.thehutgroup.accelerator.connectn.player.Board;
 
+import java.util.Map;
 
 public class Node {
-    Node parent;
-    protected Node[] children;
-    int visits;
-    private double winCount;
-    protected final Board board;
 
-    public Node(Node parent, Board board) {
-        this.parent = parent;
+    private int move;
+    private Node parent;
+    private double N;
+    private double Q;
+    private Node[] children;
+    protected Board board;
+
+    public Node(Board board, Node parent) {
         this.board = board;
-        this.visits = 0;
-        this.winCount = 0;
-        children = new Node[10];
+        this.parent = parent;
+        this.N = 0;
+        this.Q = 0;
+        this.children = new Map<Board, Node>;
     }
 
-    public int incrementVisits() {
-        return ++visits;
-    }
-
-    public double incrementWinCount(double result) {
-        return winCount + result;
-    }
-
-    public double getWinCount() {
-        return winCount;
+    public void addChildren() {
+        for (Node childNode : children) {
+            this.children = childNode;
+        }
     }
 }
