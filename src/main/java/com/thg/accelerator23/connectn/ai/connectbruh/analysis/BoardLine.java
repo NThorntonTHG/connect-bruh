@@ -1,6 +1,6 @@
 package com.thg.accelerator23.connectn.ai.connectbruh.analysis;
 
-import com.thehutgroup.accelerator.connectn.model.Line;
+import com.thg.accelerator23.connectn.ai.connectbruh.analysis.Line;
 import com.thehutgroup.accelerator.connectn.player.Board;
 import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.Position;
