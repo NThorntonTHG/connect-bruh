@@ -17,17 +17,15 @@ public class MonteCarlo {
         this.board = board;
         this.boardAnalyser = boardAnalyser;
         this.counter = counter;
-        this.root = setRoot();
+//        this.root = setRoot();
     }
 
     public int makeMove() {
-        int move;
+        int move = 0;
         return move;
     }
 
     // Set root node with UCT
-    private Node setRoot() {
-
-    }
-    }
+//    private Node setRoot() {
+//    }
 }
