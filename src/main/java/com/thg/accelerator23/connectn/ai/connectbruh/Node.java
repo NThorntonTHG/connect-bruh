@@ -8,9 +8,9 @@ public class Node {
     protected Node[] children;
     int visits;
     private double winCount;
-    protected final FinalBoard board;
+    protected final Board board;
 
-    public Node(Node parent, FinalBoard board) {
+    public Node(Node parent, Board board) {
         this.parent = parent;
         this.board = board;
         this.visits = 0;
