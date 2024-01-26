@@ -8,10 +8,6 @@ import com.thg.accelerator23.connectn.ai.connectbruh.analysis.BoardAnalyser;
 import com.thg.accelerator23.connectn.ai.connectbruh.analysis.GameState;
 
 import java.util.*;
-import java.util.stream.Stream;
-
-import static com.thehutgroup.accelerator.connectn.player.Counter.O;
-import static com.thehutgroup.accelerator.connectn.player.Counter.X;
 
 public class ConnectMoreBrainCells {
     Board board;
@@ -29,7 +25,7 @@ public class ConnectMoreBrainCells {
         this.gameState = boardAnalyser.calculateGameState(this.board);
     }
 
-    public int makeMove() {
+    public int getCandidateMove() {
         if (earlyGame()) {
             return prioritiseCentre();
         } else if (getWinningMove() > 0) {
