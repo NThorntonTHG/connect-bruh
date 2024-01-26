@@ -39,23 +39,8 @@ public class ConnectMoreBrainCells {
         } else if (makeThreeInARow() > 0) {
             return makeThreeInARow();
         } else {
-            return getRandomMove();
+            return getStrategicMove();
         }
-    }
-
-    private int makeThreeInARow() {
-        for (int col = 0; col < board.getConfig().getWidth(); col++) {
-            try {
-                Board simulatedBoard = new Board(board, col, counter);
-                GameState simulatedState = boardAnalyser.calculateGameState(simulatedBoard);
-
-                Map<Counter, Integer> maxInARow = simulatedState.getMaxInARowByCounter();
-                if (maxInARow.get(counter) != null && maxInARow.get(counter) == 3) {
-                    return col;
-                }
-            } catch (InvalidMoveException ignored) {}
-        }
-        return -1;
     }
 
     private boolean earlyGame() {
@@ -91,16 +76,51 @@ public class ConnectMoreBrainCells {
         return -1;
     }
 
-    public int getRandomMove() {
-        int move = findAdjacentCounter();
+    private int makeThreeInARow() {
+        for (int col = 0; col < board.getConfig().getWidth(); col++) {
+            try {
+                Board simulatedBoard = new Board(board, col, counter);
+                GameState simulatedState = boardAnalyser.calculateGameState(simulatedBoard);
+
+                Map<Counter, Integer> maxInARow = simulatedState.getMaxInARowByCounter();
+                if (maxInARow.get(counter) != null && maxInARow.get(counter) == 3) {
+                    return col;
+                }
+            } catch (InvalidMoveException ignored) {}
+        }
+        return -1;
+    }
+
+    public int getStrategicMove() {
+        int move = findAdjacentMove();
         if (move >= 0) {
             return move;
         }
         return basicRandomMove();
     }
 
-    public int findAdjacentCounter() {
-        for (int col = 0; col < board.getConfig().getWidth(); col++) {
+    public int findAdjacentMove() {
+        // First, check the center columns
+        int centerStart = 3;
+        int centerEnd = 6;
+        int move = findMoveInColumnsRange(centerStart, centerEnd);
+        if (move >= 0) {
+            return move;
+        }
+
+        // If no move found in center, check the remaining columns
+        // Check columns to the left of the center
+        move = findMoveInColumnsRange(0, centerStart - 1);
+        if (move >= 0) {
+            return move;
+        }
+
+        // Check columns to the right of the center
+        return findMoveInColumnsRange(centerEnd + 1, board.getConfig().getWidth() - 1);
+    }
+
+    public int findMoveInColumnsRange(int startCol, int endCol) {
+        for (int col = startCol; col <= endCol; col++) {
             int row = findFirstEmptyRowInColumn(col);
             if (row != -1 && isAdjacentToCounter(col, row)) {
                 return col;
@@ -164,7 +184,6 @@ public class ConnectMoreBrainCells {
         int totalRows = board.getConfig().getHeight();
         for (int rowIndex = 0; rowIndex < totalRows; rowIndex++) {
             if (board.getCounterAtPosition(new Position(columnIndex, rowIndex)) == null) {
-                // If any position is empty, the column is not full
                 return false;
             }
         }
