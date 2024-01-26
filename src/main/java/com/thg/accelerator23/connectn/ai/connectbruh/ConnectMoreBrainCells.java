@@ -25,7 +25,22 @@ public class ConnectMoreBrainCells {
         this.gameState = boardAnalyser.calculateGameState(this.board);
     }
 
-    public int getCandidateMove() {
+    // Final checking that a valid move is being made
+    public int makeMove() {
+        int candidateMove = getCandidateMove();
+
+        if (board.hasCounterAtPosition(new Position(candidateMove, board.getConfig().getHeight()))) {
+            for (int i = 0; i < board.getConfig().getWidth(); i++) {
+                if (!board.hasCounterAtPosition(new Position(i, board.getConfig().getHeight()))) {
+                    return i;
+                }
+            }
+        }
+
+        return candidateMove;
+    }
+
+    private int getCandidateMove() {
         if (earlyGame()) {
             return prioritiseCentre();
         } else if (getWinningMove() > 0) {
