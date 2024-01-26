@@ -100,7 +100,6 @@ public class ConnectMoreBrainCells {
     }
 
     public int findAdjacentMove() {
-        // First, check the center columns
         int centerStart = 3;
         int centerEnd = 6;
         int move = findMoveInColumnsRange(centerStart, centerEnd);
@@ -163,7 +162,7 @@ public class ConnectMoreBrainCells {
                 return row;
             }
         }
-        throw new RuntimeException("column is full");
+        return -1;
     }
 
     public int basicRandomMove() {
